@@ -8,7 +8,6 @@ public class SHA256 {
 	public static String hash(String in) throws NoSuchAlgorithmException {
 		
 		MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-		
 		messageDigest.update(in.getBytes());
         
         byte byteData[] = messageDigest.digest();
