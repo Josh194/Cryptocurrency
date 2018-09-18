@@ -11,9 +11,7 @@ public class Wallet {
 	public static void main(String[] args) throws NoSuchAlgorithmException {
 		CrackHash.generateHash();
 		
-		if (CrackHash.crackHash()) {
-			System.out.println("Cracked");
-		}
+		CrackHash.makeGuess();
 	}
 	
 }
