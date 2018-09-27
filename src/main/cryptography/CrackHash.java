@@ -30,12 +30,6 @@ public class CrackHash {
 		for (int i = currentGuess.length() - 1; i >= 0; i--) {
 			if (Arrays.asList(possibleCharacters).indexOf(currentGuess.substring(i)) == 35) {
 				addString(currentGuess, i);
-				
-				try {
-					Thread.sleep(100);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			} else {
 				if (i == currentGuess.length() - 1) {
 					currentGuess.setCharAt(i, possibleCharacters[Arrays.asList(possibleCharacters).indexOf(currentGuess.substring(i))+1].charAt(0));
@@ -78,9 +72,10 @@ public class CrackHash {
 	}
 	
 	public static void makeGuess() throws NoSuchAlgorithmException {
-		if (crackHash()) {
+		if(crackHash()) {
 			System.out.println("Cracked");
 		} else {
+			//Use Stack pop
 			makeGuess();
 		}
 	}
