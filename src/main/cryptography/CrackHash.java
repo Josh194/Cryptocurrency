@@ -21,28 +21,60 @@ public class CrackHash {
 		
 		tempHash = SHA256.hash(new String(stringLength, Charset.forName("UTF-8")));
 		
-		System.out.println(tempHash);
+		System.out.println("Hash: " + tempHash);
 	}
 	
 	private static boolean crackHash() throws NoSuchAlgorithmException {
+		System.out.println("Guess: " + SHA256.hash(currentGuess.toString()));
+		
 		for (int i = currentGuess.length() - 1; i >= 0; i--) {
 			if (Arrays.asList(possibleCharacters).indexOf(currentGuess.substring(i)) == 35) {
-				//Append to BEGINNING, NOT END
-				currentGuess.append("a");
-				currentGuess.setCharAt(i, (char) 0);
-				currentGuess.setCharAt(i+1, possibleCharacters[Arrays.asList(possibleCharacters).indexOf(currentGuess.substring(i))+1].charAt(0));
+				addString(currentGuess, i);
+				
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			} else {
-				currentGuess.setCharAt(i, possibleCharacters[Arrays.asList(possibleCharacters).indexOf(currentGuess.substring(i))+1].charAt(0));
+				if (i == currentGuess.length() - 1) {
+					currentGuess.setCharAt(i, possibleCharacters[Arrays.asList(possibleCharacters).indexOf(currentGuess.substring(i))+1].charAt(0));
+				}
 			}
 		}
 		
-		System.out.println(currentGuess);
-		
-		if (SHA256.hash("a").equals(tempHash)) {
+		if (SHA256.hash(currentGuess.toString()).equals(tempHash)) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	private static StringBuilder addString(StringBuilder string, int i) {
+		StringBuilder out = string;
+		int iteration = i;
+		
+		if (i == 0) {
+			currentGuess.append("a");
+			currentGuess.setCharAt(i, 'a');
+		} else {
+			if (Arrays.asList(possibleCharacters).indexOf(Character.toString(currentGuess.charAt(iteration))) == 35) {
+				out.setCharAt(iteration, 'a');
+				
+				if (Arrays.asList(possibleCharacters).indexOf(Character.toString(currentGuess.charAt(iteration - 1))) == 35) {
+					if (i == 0) {
+						currentGuess.append("a");
+						currentGuess.setCharAt(i, 'a');
+					}
+					
+					addString(out, iteration-1);
+				} else {
+					out.setCharAt(iteration-1, possibleCharacters[Arrays.asList(possibleCharacters).indexOf(Character.toString(currentGuess.charAt(iteration-1)))+1].charAt(0));
+				}
+			}
+		}
+
+		return out;
 	}
 	
 	public static void makeGuess() throws NoSuchAlgorithmException {
