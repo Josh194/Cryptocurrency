@@ -77,6 +77,7 @@ public class CrackHash {
 		} else {
 			//Use Stack pop
 			makeGuess();
+			
 		}
 	}
 	
