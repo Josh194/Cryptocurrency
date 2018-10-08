@@ -13,7 +13,8 @@ public class CrackHash {
 			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
 	
 	public static void generateHash() throws NoSuchAlgorithmException {
-		tempHash = SHA256.hash(randomString());
+		//tempHash = SHA256.hash(randomString());
+		tempHash = SHA256.hash("tre");
 	    
 		System.out.println("Hash: " + tempHash);
 	}
@@ -28,7 +29,6 @@ public class CrackHash {
         }
         String generatedString = generator.toString();
         return generatedString;
-
     }
 	
 	private static boolean crackHash() throws NoSuchAlgorithmException {
