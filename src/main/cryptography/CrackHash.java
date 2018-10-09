@@ -14,7 +14,7 @@ public class CrackHash {
 	
 	public static void generateHash() throws NoSuchAlgorithmException {
 		//tempHash = SHA256.hash(randomString());
-		tempHash = SHA256.hash("tre");
+		tempHash = SHA256.hash("talltree");
 	    
 		System.out.println("Hash: " + tempHash);
 	}
@@ -32,7 +32,7 @@ public class CrackHash {
     }
 	
 	private static boolean crackHash() throws NoSuchAlgorithmException {
-		System.out.println("Guess: " + SHA256.hash(currentGuess.toString()));
+		//System.out.println("Guess: " + SHA256.hash(currentGuess.toString()));
 		
 		if (SHA256.hash(currentGuess.toString()).equals(tempHash)) {
 			return true;
