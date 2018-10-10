@@ -14,7 +14,7 @@ public class CrackHash {
 	
 	public static void generateHash() throws NoSuchAlgorithmException {
 		//tempHash = SHA256.hash(randomString());
-		tempHash = SHA256.hash("tallt");
+		tempHash = SHA256.hash("talltree");
 	    
 		System.out.println("Hash: " + tempHash);
 	}

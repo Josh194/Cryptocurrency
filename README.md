@@ -1,2 +1,2 @@
 # Cryptocurrency
-A small cryptographer I am making.
+A small cryptocurrency I am making.
