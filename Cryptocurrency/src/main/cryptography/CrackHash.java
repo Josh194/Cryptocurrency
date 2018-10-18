@@ -4,6 +4,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Random;
 
+import main.wallet.gui.GUI;
+
 public class CrackHash {
 	
 	private static String tempHash = "";
